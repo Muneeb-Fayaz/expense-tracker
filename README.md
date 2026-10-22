@@ -12,6 +12,7 @@ A simple, beginner-friendly **Python console app** to keep track of your daily s
 - 🧮 **Total spent** so far, in one click
 - 📊 **Category summary** with percentages (food, travel, bills...)
 - 📅 **Monthly summary** to see where your money went in a given month
+- 📤 **Save as CSV** to open your expenses in Excel or Google Sheets
 - 💾 **Auto-save** to a local file, so your data is safe after closing the program
 - 🛡️ **Input checks** for wrong amounts and wrong date formats
 
@@ -44,8 +45,9 @@ python expense_tracker.py
 4. Show total spent
 5. Spending by category
 6. Monthly summary
-7. Exit
-Choose an option (1-7):
+7. Save as CSV
+8. Exit
+Choose an option (1-8):
 ```
 
 ### Example: Viewing expenses
@@ -75,7 +77,8 @@ Total           Rs 1269.00
 1. **Add an expense**: choose option `1`, then enter what you spent on, the amount, a category, and the date. Press **Enter** on the date to use today's date.
 2. **Check your spending**: use options `2`, `4`, `5` or `6` to see your list, total, category split, or a particular month.
 3. **Fix a mistake**: choose option `3`, pick the number of the expense, and it's removed.
-4. **Exit** with option `7`. Your data is already saved.
+4. **Export to Excel**: choose option `7`, give a file name (or press **Enter** for `expenses.csv`) and open the file in Excel or Google Sheets.
+5. **Exit** with option `8`. Your data is already saved.
 
 ---
 
@@ -113,7 +116,6 @@ You can open this file in any text editor, but it's best to let the program mana
 ## 🔮 Ideas for Future Improvements
 
 - [ ] Monthly budget limit with a warning
-- [ ] Export expenses to a CSV / Excel file
 - [ ] Edit an existing expense
 - [ ] Search by category or date range
 - [ ] Simple charts using `matplotlib`
