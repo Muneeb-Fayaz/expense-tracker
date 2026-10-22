@@ -3,6 +3,7 @@
 # Data is saved in a file called expenses.json so nothing is lost
 # when you close the program.
 
+import csv
 import json
 import os
 from datetime import datetime
@@ -182,6 +183,35 @@ def monthly_summary(expenses):
         print(f"\n{count} expenses, total Rs {month_total:.2f}")
 
 
+def export_to_csv(expenses):
+    print("\n--- Save as CSV ---")
+
+    if len(expenses) == 0:
+        print("Nothing to save, add some expenses first.")
+        return
+
+    name = input("File name (press Enter for expenses.csv): ").strip()
+    if name == "":
+        name = "expenses.csv"
+
+    # add .csv at the end if the user forgot
+    if not name.endswith(".csv"):
+        name = name + ".csv"
+
+    try:
+        with open(name, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Date", "Category", "Amount", "Title"])
+
+            for e in expenses:
+                writer.writerow([e["date"], e["category"], e["amount"], e["title"]])
+
+        print("Saved", len(expenses), "expenses to", name)
+        print("You can open it in Excel or Google Sheets.")
+    except PermissionError:
+        print("Could not save the file. Close it if it is open in Excel and try again.")
+
+
 def show_menu():
     print("\n==============================")
     print("   PERSONAL EXPENSE TRACKER")
@@ -192,7 +222,8 @@ def show_menu():
     print("4. Show total spent")
     print("5. Spending by category")
     print("6. Monthly summary")
-    print("7. Exit")
+    print("7. Save as CSV")
+    print("8. Exit")
 
 
 def main():
@@ -200,7 +231,7 @@ def main():
 
     while True:
         show_menu()
-        choice = input("Choose an option (1-7): ").strip()
+        choice = input("Choose an option (1-8): ").strip()
 
         if choice == "1":
             add_expense(expenses)
@@ -215,10 +246,12 @@ def main():
         elif choice == "6":
             monthly_summary(expenses)
         elif choice == "7":
+            export_to_csv(expenses)
+        elif choice == "8":
             print("Bye! Keep saving :)")
             break
         else:
-            print("Invalid option, please pick between 1 and 7.")
+            print("Invalid option, please pick between 1 and 8.")
 
 
 main()
